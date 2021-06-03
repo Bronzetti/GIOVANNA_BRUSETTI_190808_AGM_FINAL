@@ -29,7 +29,7 @@ import static com.example.listapersonagens.ui.activities.ContantesActivities.CHA
 
 public class ListaPersonagemActivity extends AppCompatActivity {
 
-  public static final String TITULO_APPBAR = "Lista de Personagens";  //criação da classe Main
+  public static final String TITULO_APPBAR = "Agenda";  //criação da classe Main
   private final PersonagemDAO dao = new PersonagemDAO();
   private ArrayAdapter<Personagem> adapter; //conjunto de comandos
 

@@ -21,11 +21,18 @@ import static com.example.listapersonagens.ui.activities.ContantesActivities.CHA
 
 public class FormularioPersonagemActivity extends AppCompatActivity {
 
-    public static final String TITULO_APP_BAR_EDITAR_PERSONAGEM = "Editar Personagem";
-    public static final String TITULO_APP_BAR_NOVO_PERSONAGEM = "Novo Personagem";
+    public static final String TITULO_APP_BAR_EDITAR_PERSONAGEM = "Editar Contato";
+    public static final String TITULO_APP_BAR_NOVO_PERSONAGEM = "Novo Contato";
     private EditText campoNome;
     private EditText campoAltura;
     private EditText campoNascimento;
+
+    private EditText campoTelefone;
+    private EditText campoEndereco;
+    private EditText campoCep;
+    private EditText campoRg;
+    private EditText campoGenero;
+
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
@@ -66,6 +73,13 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
+
+        campoTelefone.setText(personagem.getTelefone());
+        campoEndereco.setText(personagem.getEndereco());
+        campoCep.setText(personagem.getCep());
+        campoRg.setText(personagem.getRg());
+        campoGenero.setText(personagem.getGenero());
+
     }
 
     private void configuraBotaoSalvar() {//botão para adicionar o personagem na lista
@@ -94,6 +108,13 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome = findViewById(R.id.edittext_nome);
         campoAltura = findViewById(R.id.edittext_altura);
         campoNascimento = findViewById(R.id.edittext_nascimento);
+
+        campoTelefone = findViewById(R.id.edittext_telefone);
+        campoEndereco = findViewById(R.id.edittext_endereco);
+        campoCep = findViewById(R.id.edittext_cep);
+        campoRg = findViewById(R.id.edittext_rg);
+        campoGenero = findViewById(R.id.edittext_genero);
+
         //máscaras
         SimpleMaskFormatter smfAltura = new SimpleMaskFormatter("N,NN");
         MaskTextWatcher mtwAltura = new MaskTextWatcher(campoAltura, smfAltura);
@@ -103,6 +124,18 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
         campoNascimento.addTextChangedListener(mtwNascimento);
 
+        SimpleMaskFormatter smfTelefone = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtwTelefone = new MaskTextWatcher(campoTelefone, smfTelefone);
+        campoTelefone.addTextChangedListener(mtwTelefone);
+
+        SimpleMaskFormatter smfCep = new SimpleMaskFormatter("NNNNN-NNN");
+        MaskTextWatcher mtwTCep = new MaskTextWatcher(campoCep, smfCep);
+        campoCep.addTextChangedListener(mtwTCep);
+
+        SimpleMaskFormatter smfRg = new SimpleMaskFormatter("NN.NNN.NNN-N");
+        MaskTextWatcher mtwRg = new MaskTextWatcher(campoRg, smfRg);
+        campoRg.addTextChangedListener(mtwRg);
+
     }
 
     private void preencherPersonagem() {
@@ -110,9 +143,24 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         String nascimento = campoNascimento.getText().toString();
         String altura = campoAltura.getText().toString();
 
+        String telefone = campoTelefone.getText().toString();
+        String endereco = campoEndereco.getText().toString();
+        String cep = campoCep.getText().toString();
+        String rg = campoRg.getText().toString();
+        String genero = campoGenero.getText().toString();
+
         personagem.setNome(nome);
         personagem.setAltura(altura);
         personagem.setNascimento(nascimento);
+
+        personagem.setTelefone(telefone);
+        personagem.setEndereco(endereco);
+        personagem.setCep(cep);
+        personagem.setRg(rg);
+        personagem.setGenero(genero
+
+        );
+
     }
 
 
